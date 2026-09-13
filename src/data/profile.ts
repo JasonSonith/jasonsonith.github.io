@@ -21,6 +21,7 @@ export type Experience = {
   org: string
   orgShort: string
   role: string
+  roleShort?: string
   points: string[]
 }
 
@@ -54,10 +55,12 @@ export const experience: Experience[] = [
     period: 'Jul 2025-May 2026',
     org: 'University of South Alabama',
     orgShort: 'Univ. of South Alabama',
-    role: 'Research Assistant',
+    role: 'Research Assistant, Earthquake Prediction',
+    roleShort: 'Seismic Prediction Research',
     points: [
-      'Built Python preprocessing scripts with ObsPy and pandas to extract metadata and normalize seismic recordings.',
-      'Tuned a nonlinear phase space classifier across 16 graph features and 600,000 labeled waveforms.',
+      'Co-authored "Early Warning of Earthquakes from Broadband Seismic Streams with NLPSA", applying nonlinear phase space analysis to earthquake early warning.',
+      'Built a Python pipeline (ObsPy, pandas, NumPy, SciPy) that pulls three-component broadband data from IRIS station IU.ANMO and labels P-wave, S-wave, and coda arrivals with TauP on the IASP91 model.',
+      'Ran a Monte Carlo sweep of 284 NLPSA parameter sets over ten regional earthquakes (M5.7-7.0) and three non-event windows; 65.5% separated every event window from every non-event window.',
     ],
   },
 ]
@@ -134,11 +137,14 @@ export const projects: Project[] = [
   },
   {
     slug: 'earthquake-prediction',
-    name: 'Earthquake Prediction Research',
+    name: 'Seismic Early Warning with NLPSA',
     period: '2025.07-2026.05',
-    summary: 'Nonlinear phase space classification of seismic waveforms.',
-    points: ['Preprocessing with ObsPy and pandas; classifier tuned across 16 graph features and 600,000 labeled waveforms.'],
-    stack: ['Python', 'ObsPy', 'pandas'],
+    summary: 'Earthquake early warning from broadband seismic streams using nonlinear phase space analysis instead of deep learning pickers.',
+    points: [
+      'Ten regional earthquakes (M5.7-7.0) from station IU.ANMO, labeled with TauP; 284 Monte Carlo parameter sets evaluated.',
+      'The best parameter set needed only two graph features (Determinant + Triangles) and fired about 113 minutes before P-wave arrival, a lead time the paper flags as not yet validated as a precursor.',
+    ],
+    stack: ['Python', 'ObsPy', 'NumPy', 'SciPy', 'Java'],
     repo: 'https://github.com/JasonSonith/Earthquake-prediction',
   },
   {
@@ -199,5 +205,5 @@ export type SkillGroup = { label: string; items: string[] }
 export const skills: SkillGroup[] = [
   { label: 'security', items: ['Burp Suite', 'Nmap', 'OWASP ZAP', 'Metasploit', 'Gobuster', 'Splunk', 'Nessus', 'pfSense', 'WireGuard', 'Kali Linux'] },
   { label: 'cloud', items: ['AWS IAM', 'EC2', 'S3', 'GuardDuty', 'CloudTrail', 'Config', 'Linux', 'Docker'] },
-  { label: 'languages', items: ['Python', 'PowerShell', 'Bash', 'Java', 'JavaScript', 'C'] },
+  { label: 'languages', items: ['Python', 'Java', 'C', 'TypeScript', 'JavaScript', 'Bash', 'PowerShell'] },
 ]

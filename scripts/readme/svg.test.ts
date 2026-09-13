@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { awards, certs, experience, projects, services } from '../../src/data/profile'
+import { awards, certs, experience, projects, services, skills } from '../../src/data/profile'
 import { findPhones } from '../../tests/phone'
 import { BUTTONS, bannerSvg, buttonSvg, certsSvg, escapeXml, experienceSvg, readmeMarkdown } from './svg'
 
@@ -30,13 +30,14 @@ describe('svg panels', () => {
   it('experience panel lists every role', () => {
     const svg = experienceSvg('')
     wellFormed(svg)
-    for (const e of experience) expect(svg).toContain(escapeXml(e.role))
+    for (const e of experience) expect(svg).toContain(escapeXml(e.roleShort ?? e.role))
   })
 
-  it('certs panel lists every cert and award', () => {
+  it('certs panel lists every cert, award, and coding language', () => {
     const svg = certsSvg('')
     wellFormed(svg)
     for (const c of [...certs, ...awards]) expect(svg).toContain(escapeXml(c))
+    for (const lang of skills.find((g) => g.label === 'languages')!.items) expect(svg).toContain(escapeXml(lang))
   })
 
   it('buttons render their label', () => {
@@ -61,6 +62,12 @@ describe('readmeMarkdown', () => {
       expect(md).toMatch(new RegExp(`src="assets/${f.replace('.', '\\.')}" alt="[^"]+"`))
     }
     expect(md).not.toContain('nmap.svg')
+  })
+
+  it('lists every skill and describes the seismic research', () => {
+    for (const item of skills.flatMap((g) => g.items)) expect(md).toContain(item)
+    expect(md).toContain('Seismic Early Warning with NLPSA')
+    expect(md).toContain('Research Assistant, Earthquake Prediction')
   })
 
   it('contains no phone number', () => {

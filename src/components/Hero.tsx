@@ -47,7 +47,7 @@ function SessionPane() {
             <tr key={e.org} className="max-md:grid max-md:grid-cols-[14ch_1fr] max-md:gap-x-2">
               <td className="p-0 tabular-nums">{e.periodShort}</td>
               <td className="p-0">{e.orgShort}</td>
-              <td className="p-0 whitespace-normal max-md:col-start-2 max-md:text-term-dim">{e.role}</td>
+              <td className="p-0 whitespace-normal max-md:col-start-2 max-md:text-term-dim">{e.roleShort ?? e.role}</td>
             </tr>
           ))}
         </tbody>

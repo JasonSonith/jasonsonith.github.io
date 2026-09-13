@@ -1,5 +1,5 @@
 import { ASCII_NAME } from '../../src/data/ascii-name'
-import { awards, certs, education, experience, identity, leadership, links, projects, services } from '../../src/data/profile'
+import { awards, certs, education, experience, identity, leadership, links, projects, services, skills } from '../../src/data/profile'
 
 const C = { bg: '#080808', fg: '#08f679', dim: '#089d46' }
 const FS = 18
@@ -120,7 +120,7 @@ ${lines.map((l, i) => `<text x="20" y="${76 + i * LH}"${l.dim ? ' class="dim"' :
 export function experienceSvg(fontCss: string) {
   const lines = experience.flatMap((e) => [
     { text: `${pad(e.periodShort, 15)}${e.orgShort}` },
-    { text: `${' '.repeat(15)}${e.role}`, dim: true },
+    { text: `${' '.repeat(15)}${e.roleShort ?? e.role}`, dim: true },
   ])
   const title = `experience.log: ${experience.map((e) => `${e.role} at ${e.org} (${e.period})`).join('; ')}`
   return panel(title, 'cat experience.log', lines, fontCss)
@@ -144,10 +144,15 @@ function wrap(text: string, maxChars: number) {
   return lines
 }
 
+const languages = skills.find((g) => g.label === 'languages')?.items ?? []
+
 export function certsSvg(fontCss: string) {
   const items = [...certs, ...awards]
-  const lines = items.flatMap((c) => wrap(c, 48))
-  return panel(`certs.txt: ${items.join('; ')}`, 'cat certs.txt', lines.map((text) => ({ text })), fontCss)
+  const lines = [
+    ...items.flatMap((c) => wrap(c, 48)).map((text) => ({ text })),
+    ...wrap(`lang: ${languages.join(' ')}`, 48).map((text) => ({ text, dim: true })),
+  ]
+  return panel(`certs.txt and skills.txt: ${items.join('; ')}; languages: ${languages.join(', ')}`, 'cat certs.txt skills.txt', lines, fontCss)
 }
 
 export const BUTTONS = [
@@ -185,7 +190,7 @@ ${buttons}
 
 <p align="center">
   <img src="assets/experience.svg" alt="cat experience.log: ${escapeXml(experience.map((e) => `${e.role}, ${e.org}`).join('; '))}" width="49%">
-  <img src="assets/certs.svg" alt="cat certs.txt: ${escapeXml(certItems.join('; '))}" width="49%">
+  <img src="assets/certs.svg" alt="cat certs.txt skills.txt: ${escapeXml(certItems.join('; '))}; languages: ${escapeXml(languages.join(', '))}" width="49%">
 </p>
 
 ### \`cat experience.log --verbose\`
@@ -201,6 +206,10 @@ ${projectRows}
 ### \`cat certs.txt\`
 
 ${certItems.map((c) => `- ${c}`).join('\n')}
+
+### \`cat skills.txt\`
+
+${skills.map((g) => `- **${g.label}**: ${g.items.join(', ')}`).join('\n')}
 
 ### \`cat education.txt\`
 
