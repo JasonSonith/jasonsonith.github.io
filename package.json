@@ -15,7 +15,6 @@
     "redact": "python3 scripts/redact-resume.py"
   },
   "dependencies": {
-    "@fontsource-variable/geist": "^5.3.0",
     "@fontsource/google-sans-code": "^5.3.0",
     "@tailwindcss/vite": "^4.3.3",
     "class-variance-authority": "^0.7.1",

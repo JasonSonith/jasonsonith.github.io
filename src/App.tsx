@@ -1,5 +1,11 @@
-function App() {
-  return null
-}
+import { Hero } from '@/components/Hero'
+import { StatusBar } from '@/components/StatusBar'
 
-export default App
+export default function App() {
+  return (
+    <>
+      <Hero />
+      <StatusBar />
+    </>
+  )
+}
