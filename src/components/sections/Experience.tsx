@@ -4,7 +4,7 @@ import { Section } from '../Section'
 export function Experience() {
   return (
     <Section id="experience" command="cat experience.log --verbose" title="Experience">
-      <ol className="grid gap-[1.5lh]">
+      <ol className="grid max-w-[88ch] gap-[1.5lh]">
         {experience.map((e) => (
           <li key={e.org}>
             <p>

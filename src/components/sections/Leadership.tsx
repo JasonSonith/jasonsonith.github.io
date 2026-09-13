@@ -10,7 +10,7 @@ export function Leadership() {
             <span className="text-term-dim tabular-nums">{String(i + 1).padStart(3, ' ')}</span>
             <span>
               {l.title}, {l.org} <span className="text-term-dim">[{l.period}]</span>
-              <span className="block text-term-dim">{l.point}</span>
+              <span className="block max-w-[80ch] text-term-dim">{l.point}</span>
             </span>
           </li>
         ))}

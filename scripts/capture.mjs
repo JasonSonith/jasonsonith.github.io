@@ -22,5 +22,11 @@ if (which === 'responsive' || which === 'all') {
   await shot('desktop', { width: 1440, height: 815 }, { fullPage: true })
   await shot('mobile', { width: 390, height: 844 }, { fullPage: true })
   await shot('user-1280', { width: 1280, height: 800 })
+  const page = await browser.newPage({ viewport: { width: 1440, height: 815 }, reducedMotion: 'reduce' })
+  await page.goto(url, { waitUntil: 'networkidle' })
+  await page.locator('#projects [data-slot="accordion-trigger"]').first().click()
+  await page.locator('#projects').screenshot({ path: `${out}/open-project.png` })
+  await page.close()
+  console.log(`captured ${out}/open-project.png`)
 }
 await browser.close()

@@ -9,7 +9,7 @@ export function Projects() {
       <Accordion type="multiple" className="border-t border-term-faint">
         {projects.map((p) => (
           <AccordionItem key={p.slug} value={p.slug} className="border-term-faint">
-            <AccordionTrigger className="px-[1ch] py-[0.4lh] text-base hover:bg-term-faint aria-expanded:bg-term aria-expanded:text-term-bg aria-expanded:**:text-term-bg">
+            <AccordionTrigger className="px-[1ch] py-[0.4lh] text-base hover:bg-term-faint aria-expanded:bg-term aria-expanded:text-term-bg aria-expanded:**:text-term-bg aria-expanded:**:data-[slot=accordion-trigger-icon]:text-term-bg">
               <span className="grid w-full grid-cols-[11ch_16ch_1fr] gap-x-[2ch] text-left max-md:grid-cols-1">
                 <span aria-hidden="true" className="text-term-dim max-md:hidden">drwxr-xr-x</span>
                 <span className="text-term-dim tabular-nums">{p.period ?? '-'}</span>

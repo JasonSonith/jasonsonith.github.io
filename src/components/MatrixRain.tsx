@@ -4,7 +4,7 @@ const LATIN = '0123456789abcdefghijklmnopqrstuvwxyz#$%&*+=<>'
 const KANA = 'アイウエオカキクケコサシスセソタチツテト'
 const COLUMNS = 2
 const ROW_H = 19
-const TRAIL = 14
+const TRAIL = 4
 
 const glyph = () => {
   const r = Math.random()
@@ -36,7 +36,7 @@ export function MatrixRain({ className }: { className?: string }) {
       grid.forEach((column, c) => {
         column.forEach((ch, r) => {
           const behind = (heads[c] - r + rows) % rows
-          const alpha = behind < TRAIL ? 1 - (behind / TRAIL) * 0.65 : 0.28
+          const alpha = behind < TRAIL ? 1 : 0.82
           ctx.fillStyle = behind === 0 ? '#c8ffe0' : `rgb(8 246 121 / ${alpha.toFixed(2)})`
           ctx.fillText(ch, c * colW + colW / 2, (r + 1) * ROW_H - 5)
         })

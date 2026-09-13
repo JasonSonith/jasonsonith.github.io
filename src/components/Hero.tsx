@@ -17,7 +17,7 @@ function Prompt({ cmd, i }: { cmd: string; i: number }) {
 
 function SessionPane() {
   return (
-    <section aria-label="Session" className="pl-[1.72vw] pt-[2.1vh] max-md:px-4">
+    <section aria-label="Session" className="pl-[1.72vw] pr-[2ch] pt-[2.1vh] max-md:px-4">
       <Prompt cmd="whoami" i={0} />
       <h1 className="sr-only">{identity.name}</h1>
       <pre aria-hidden="true" className="ascii boot mt-[3vh] max-md:hidden" style={step(1)}>
@@ -35,7 +35,7 @@ function SessionPane() {
       <div className="mt-[3.7vh]">
         <Prompt cmd="cat experience.log" i={3} />
       </div>
-      <table className="boot mt-[2.6vh] border-collapse whitespace-nowrap max-md:block max-md:whitespace-normal" style={step(4)}>
+      <table className="boot mt-[2.6vh] w-full table-fixed border-collapse whitespace-nowrap max-md:block max-md:whitespace-normal" style={step(4)}>
         <caption className="sr-only">Experience</caption>
         <colgroup className="max-md:hidden">
           <col className="w-[15.4ch]" />
@@ -47,7 +47,7 @@ function SessionPane() {
             <tr key={e.org} className="max-md:grid max-md:grid-cols-[14ch_1fr] max-md:gap-x-2">
               <td className="p-0 tabular-nums">{e.periodShort}</td>
               <td className="p-0">{e.orgShort}</td>
-              <td className="p-0 max-md:col-start-2 max-md:text-term-dim">{e.role}</td>
+              <td className="truncate p-0 max-md:col-start-2 max-md:overflow-visible max-md:whitespace-normal max-md:text-term-dim">{e.role}</td>
             </tr>
           ))}
         </tbody>
