@@ -1,0 +1,120 @@
+{
+ "regions": [
+  {
+   "id": "tabbar",
+   "kind": "chrome",
+   "grid": "A0:J0",
+   "note": "full-width tmux tab strip with thin green outline"
+  },
+  {
+   "id": "tab-session",
+   "kind": "text",
+   "grid": "A0:B0",
+   "note": "[0] jason@sonith: ~",
+   "snap": false
+  },
+  {
+   "id": "tab-certs",
+   "kind": "text",
+   "grid": "E0:F0",
+   "note": "SEC+ | CySA+ | AWS CP",
+   "snap": false
+  },
+  {
+   "id": "tab-clock",
+   "kind": "text",
+   "grid": "I0:J0",
+   "note": "live date and clock",
+   "snap": false
+  },
+  {
+   "id": "ascii-name",
+   "kind": "text",
+   "grid": "A1:F2",
+   "note": "whoami prompt and JASON SONITH in large green block-letter ASCII art",
+   "snap": false
+  },
+  {
+   "id": "role-lines",
+   "kind": "text",
+   "grid": "A3:D3",
+   "note": "Penetration Tester / Product Security and M.S. Information Security @ Georgia Tech",
+   "snap": false
+  },
+  {
+   "id": "cat-prompt",
+   "kind": "text",
+   "grid": "A4:C4",
+   "note": "jason@sonith:~$ cat experience.log",
+   "snap": false
+  },
+  {
+   "id": "experience-table",
+   "kind": "text",
+   "grid": "A5:F5",
+   "note": "three experience rows: dates, organization, role",
+   "snap": false
+  },
+  {
+   "id": "cursor-prompt",
+   "kind": "text",
+   "grid": "A6:B6",
+   "note": "prompt with blinking block cursor",
+   "snap": false
+  },
+  {
+   "id": "pane-divider",
+   "kind": "chrome",
+   "grid": "G1:G8",
+   "note": "thin vertical green rule separating panes"
+  },
+  {
+   "id": "nmap-block",
+   "kind": "text",
+   "grid": "G1:J3",
+   "note": "nmap -sV jason command and PORT STATE SERVICE table of tools",
+   "snap": false
+  },
+  {
+   "id": "rain-column",
+   "kind": "chrome",
+   "grid": "J4:J8",
+   "note": "falling glyph column rendered by a canvas script",
+   "codeDrawn": true
+  },
+  {
+   "id": "statusbar",
+   "kind": "chrome",
+   "grid": "A9:J9",
+   "note": "inverse green tmux status bar"
+  },
+  {
+   "id": "nav-contact",
+   "kind": "control",
+   "grid": "A9:B9",
+   "note": "[1] contact",
+   "snap": false
+  },
+  {
+   "id": "nav-resume",
+   "kind": "control",
+   "grid": "C9:D9",
+   "note": "[2] resume.pdf",
+   "snap": false
+  },
+  {
+   "id": "nav-github",
+   "kind": "control",
+   "grid": "E9:F9",
+   "note": "[3] github",
+   "snap": false
+  },
+  {
+   "id": "nav-linkedin",
+   "kind": "control",
+   "grid": "G9:H9",
+   "note": "[4] linkedin",
+   "snap": false
+  }
+ ]
+}
