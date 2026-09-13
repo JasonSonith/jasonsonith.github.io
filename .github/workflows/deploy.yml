@@ -26,6 +26,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
+      - run: pip install pymupdf==1.28.2 && python3 scripts/redact-resume.py --check public/resume.pdf
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

@@ -114,6 +114,12 @@ def leftovers(path: str) -> list[str]:
 
 
 if __name__ == "__main__":
+    if len(sys.argv) == 3 and sys.argv[1] == "--check":
+        problems = leftovers(sys.argv[2])
+        if problems:
+            sys.exit(f"phone-shaped content found in {sys.argv[2]}: {len(problems)} problem(s)")
+        print(f"no phone-shaped content in {sys.argv[2]}")
+        sys.exit(0)
     if len(sys.argv) != 3:
         sys.exit(__doc__)
     hits = redact(sys.argv[1], sys.argv[2])

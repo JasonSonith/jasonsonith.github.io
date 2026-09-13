@@ -33,7 +33,7 @@ export function StatusBar() {
           href={item.href}
           target={item.external ? '_blank' : undefined}
           rel={item.external ? 'noreferrer' : undefined}
-          className="justify-self-start no-underline outline-none hover:bg-term-bg hover:text-term focus-visible:bg-term-bg focus-visible:text-term"
+          className="justify-self-start no-underline hover:bg-term-bg hover:text-term focus-visible:bg-term-bg focus-visible:text-term focus-visible:outline-term-bg"
         >
           <span aria-hidden="true" className="max-md:hidden">
             [{item.key}]&nbsp;&nbsp;

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { SECTION_IDS, type SectionId } from '@/lib/commands'
+import type { SectionId } from '@/lib/commands'
 
 export function Section({ id, command, title, children }: { id: SectionId; command: string; title: string; children: ReactNode }) {
   return (
@@ -11,7 +11,7 @@ export function Section({ id, command, title, children }: { id: SectionId; comma
             {command}
           </span>
           <span aria-hidden="true" className="shrink-0 text-term-dim max-md:hidden">
-            [{SECTION_IDS.indexOf(id)}:{id}]
+            [{id}]
           </span>
           <span className="sr-only">{title}</span>
         </h2>

@@ -26,3 +26,4 @@ dist-ssr
 readme-out/
 .impeccable/review/
 .impeccable/build/scaffold/
+__pycache__/

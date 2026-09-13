@@ -38,8 +38,8 @@ function SessionPane() {
       <table className="boot mt-[2.6vh] w-full table-fixed border-collapse whitespace-nowrap max-md:block max-md:whitespace-normal" style={step(4)}>
         <caption className="sr-only">Experience</caption>
         <colgroup className="max-md:hidden">
-          <col className="w-[15.4ch]" />
-          <col className="w-[24.3ch]" />
+          <col className="w-[14.4ch]" />
+          <col className="w-[24ch]" />
           <col />
         </colgroup>
         <tbody className="max-md:grid max-md:gap-y-2">
@@ -47,7 +47,7 @@ function SessionPane() {
             <tr key={e.org} className="max-md:grid max-md:grid-cols-[14ch_1fr] max-md:gap-x-2">
               <td className="p-0 tabular-nums">{e.periodShort}</td>
               <td className="p-0">{e.orgShort}</td>
-              <td className="truncate p-0 max-md:col-start-2 max-md:overflow-visible max-md:whitespace-normal max-md:text-term-dim">{e.role}</td>
+              <td className="p-0 whitespace-normal max-md:col-start-2 max-md:text-term-dim">{e.role}</td>
             </tr>
           ))}
         </tbody>
@@ -100,7 +100,7 @@ export function Hero() {
   return (
     <header id="top" className="relative flex min-h-[600px] flex-col pb-[calc(var(--statusbar-h)+3.4vh)] md:h-svh">
       <TabBar />
-      <div className="grid flex-1 grid-cols-[62fr_38fr] max-md:grid-cols-1">
+      <div className="grid flex-1 grid-cols-[63fr_37fr] max-md:grid-cols-1">
         <SessionPane />
         <NmapPane />
       </div>
