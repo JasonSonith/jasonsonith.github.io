@@ -14,7 +14,7 @@ export default function App() {
   return (
     <>
       <Hero />
-      <main className="max-w-[110ch] pl-[1.72vw] pr-4 pb-[calc(var(--statusbar-h)+6lh)] max-md:px-4">
+      <main className="max-w-[88ch] pl-[1.72vw] pr-4 pb-[calc(var(--statusbar-h)+6lh)] max-md:px-4">
         <Experience />
         <Projects />
         <Certs />

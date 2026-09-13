@@ -23,13 +23,14 @@ function SessionPane() {
       <pre aria-hidden="true" className="ascii boot mt-[3vh] max-md:hidden" style={step(1)}>
         {ASCII_NAME}
       </pre>
-      <pre aria-hidden="true" className="boot mt-3 hidden text-[3vw] leading-[1.22] max-md:block" style={step(1)}>
+      <pre aria-hidden="true" className="boot mt-3 hidden text-[3vw] leading-[1.22] tracking-[-0.06em] max-md:block" style={step(1)}>
         {ASCII_NAME_STACKED}
       </pre>
       <div className="boot mt-[2.3vh]" style={step(2)}>
         {identity.roles.map((r) => (
           <p key={r}>{r}</p>
         ))}
+        <p className="text-term-dim md:hidden">{identity.certsShort.join(' | ')}</p>
       </div>
       <div className="mt-[3.7vh]">
         <Prompt cmd="cat experience.log" i={3} />
@@ -37,13 +38,13 @@ function SessionPane() {
       <table className="boot mt-[2.6vh] border-collapse whitespace-nowrap max-md:block max-md:whitespace-normal" style={step(4)}>
         <caption className="sr-only">Experience</caption>
         <colgroup className="max-md:hidden">
-          <col className="w-[12.4vw]" />
-          <col className="w-[20.37vw]" />
+          <col className="w-[15.4ch]" />
+          <col className="w-[24.3ch]" />
           <col />
         </colgroup>
         <tbody className="max-md:grid max-md:gap-y-2">
           {experience.map((e) => (
-            <tr key={e.org} className="max-md:grid max-md:grid-cols-[11ch_1fr] max-md:gap-x-2">
+            <tr key={e.org} className="max-md:grid max-md:grid-cols-[14ch_1fr] max-md:gap-x-2">
               <td className="p-0 tabular-nums">{e.periodShort}</td>
               <td className="p-0">{e.orgShort}</td>
               <td className="p-0 max-md:col-start-2 max-md:text-term-dim">{e.role}</td>

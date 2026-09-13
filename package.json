@@ -12,7 +12,8 @@
     "ascii": "node scripts/ascii-name.mjs",
     "capture": "node scripts/capture.mjs",
     "readme": "tsx scripts/readme/generate.ts",
-    "redact": "python3 scripts/redact-resume.py"
+    "redact": "python3 scripts/redact-resume.py",
+    "smoke": "tsx scripts/smoke.mjs"
   },
   "dependencies": {
     "@fontsource/google-sans-code": "^5.3.0",

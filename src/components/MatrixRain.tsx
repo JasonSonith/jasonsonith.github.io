@@ -1,10 +1,17 @@
 import { useEffect, useRef } from 'react'
 
-const GLYPHS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ0123456789abcdef#$%&*+=<>'
-const COL_W = 34
+const LATIN = '0123456789abcdefghijklmnopqrstuvwxyz#$%&*+=<>'
+const KANA = 'アイウエオカキクケコサシスセソタチツテト'
+const COLUMNS = 2
 const ROW_H = 19
+const TRAIL = 14
 
-const glyph = () => GLYPHS[Math.floor(Math.random() * GLYPHS.length)]
+const glyph = () => {
+  const r = Math.random()
+  if (r < 0.1) return '·'
+  if (r < 0.22) return KANA[Math.floor(Math.random() * KANA.length)]
+  return LATIN[Math.floor(Math.random() * LATIN.length)]
+}
 
 export function MatrixRain({ className }: { className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null)
@@ -19,18 +26,19 @@ export function MatrixRain({ className }: { className?: string }) {
     let rows = 0
     let grid: string[][] = []
     let heads: number[] = []
-    let visible = true
+    let onScreen = true
     let raf = 0
     let last = 0
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h)
-      const offset = (w - grid.length * COL_W) / 2
+      const colW = w / COLUMNS
       grid.forEach((column, c) => {
         column.forEach((ch, r) => {
           const behind = (heads[c] - r + rows) % rows
-          ctx.fillStyle = behind === 0 ? '#b6ffd3' : `rgb(8 246 121 / ${Math.max(0.55, 1 - behind / rows).toFixed(2)})`
-          ctx.fillText(ch, offset + c * COL_W + COL_W / 2, (r + 1) * ROW_H - 5)
+          const alpha = behind < TRAIL ? 1 - (behind / TRAIL) * 0.65 : 0.28
+          ctx.fillStyle = behind === 0 ? '#c8ffe0' : `rgb(8 246 121 / ${alpha.toFixed(2)})`
+          ctx.fillText(ch, c * colW + colW / 2, (r + 1) * ROW_H - 5)
         })
       })
     }
@@ -44,14 +52,14 @@ export function MatrixRain({ className }: { className?: string }) {
       ctx.font = '13px "Google Sans Code", monospace'
       ctx.textAlign = 'center'
       rows = Math.max(1, Math.floor(h / ROW_H))
-      grid = Array.from({ length: Math.max(1, Math.floor(w / COL_W)) }, () => Array.from({ length: rows }, glyph))
-      heads = grid.map(() => Math.floor(Math.random() * rows))
+      grid = Array.from({ length: COLUMNS }, () => Array.from({ length: rows }, glyph))
+      heads = grid.map((_, c) => Math.floor((rows / COLUMNS) * c + Math.random() * 4))
       draw()
     }
 
     const frame = (t: number) => {
       raf = requestAnimationFrame(frame)
-      if (!visible || document.hidden || t - last < 90) return
+      if (t - last < 90) return
       last = t
       grid.forEach((column, c) => {
         heads[c] = (heads[c] + 1) % rows
@@ -60,18 +68,25 @@ export function MatrixRain({ className }: { className?: string }) {
       draw()
     }
 
+    const sync = () => {
+      cancelAnimationFrame(raf)
+      if (!reduce && onScreen && !document.hidden) raf = requestAnimationFrame(frame)
+    }
+
     const ro = new ResizeObserver(resize)
     ro.observe(canvas)
     const io = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting
+      onScreen = entry.isIntersecting
+      sync()
     })
     io.observe(canvas)
-    if (!reduce) raf = requestAnimationFrame(frame)
+    document.addEventListener('visibilitychange', sync)
 
     return () => {
       cancelAnimationFrame(raf)
       ro.disconnect()
       io.disconnect()
+      document.removeEventListener('visibilitychange', sync)
     }
   }, [])
 

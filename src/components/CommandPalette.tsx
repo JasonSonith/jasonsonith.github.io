@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
-import { COMMANDS, resolveCommand, type TerminalCommand } from '@/lib/commands'
+import { COMMANDS, type TerminalCommand } from '@/lib/commands'
 import { isTypingTarget } from '@/lib/dom'
 import { perform } from '@/lib/perform'
 
@@ -33,13 +33,6 @@ export function CommandPalette() {
         value={query}
         onValueChange={setQuery}
         placeholder="type a command, or help"
-        onKeyDown={(e) => {
-          const exact = resolveCommand(query)
-          if (e.key === 'Enter' && exact) {
-            e.preventDefault()
-            run(exact)
-          }
-        }}
       />
       <CommandList>
         <CommandEmpty>command not found: {query.trim()} (try help)</CommandEmpty>
@@ -47,7 +40,7 @@ export function CommandPalette() {
           {COMMANDS.map((c) => (
             <CommandItem key={c.name} value={[c.name, ...c.aliases].join(' ')} onSelect={() => run(c)}>
               <span>{c.name}</span>
-              <span className="ml-auto text-term-dim">{c.description}</span>
+              <span className="ml-auto opacity-70">{c.description}</span>
             </CommandItem>
           ))}
         </CommandGroup>

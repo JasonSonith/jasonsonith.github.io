@@ -23,9 +23,3 @@ export const COMMANDS: TerminalCommand[] = [
   { name: 'linkedin', aliases: [], description: 'open LinkedIn', action: { kind: 'open', href: links.linkedin } },
   { name: 'help', aliases: ['?', 'man'], description: 'list commands', action: { kind: 'help' } },
 ]
-
-export function resolveCommand(input: string): TerminalCommand | undefined {
-  const q = input.trim().replace(/^\$\s*/, '').toLowerCase()
-  if (!q) return undefined
-  return COMMANDS.find((c) => c.name === q || c.aliases.includes(q))
-}

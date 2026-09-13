@@ -75,6 +75,7 @@
     font-size: clamp(14px, 1.34vw, 20px);
     line-height: 1.62;
     font-variant-ligatures: none;
+    scrollbar-color: var(--term-dim) var(--term-bg);
   }
   body::after {
     content: "";
@@ -91,8 +92,8 @@
 }
 
 .ascii {
-  font-size: calc(57.35vw / (94 * 0.6));
-  line-height: 1.22;
+  font-size: calc(57.35vw / (103 * 0.6));
+  line-height: 1.337;
   white-space: pre;
 }
 

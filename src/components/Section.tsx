@@ -11,7 +11,7 @@ export function Section({ id, command, title, children }: { id: SectionId; comma
         </span>
         <span className="sr-only">{title}</span>
       </h2>
-      <div className="mt-[1lh]">{children}</div>
+      <div className="mt-[1lh] border-l border-term-faint pl-[2ch]">{children}</div>
     </section>
   )
 }

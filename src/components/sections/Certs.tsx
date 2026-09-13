@@ -5,9 +5,14 @@ export function Certs() {
   return (
     <Section id="certs" command="cat certs.txt skills.txt" title="Certifications and skills">
       <ul className="grid gap-[0.25lh]">
-        {[...certs, ...awards].map((c) => (
+        {certs.map((c) => (
           <li key={c}>
-            <span className="text-term-dim">[verified]</span> {c}
+            <span className="text-term-dim">[cert]</span> {c}
+          </li>
+        ))}
+        {awards.map((a) => (
+          <li key={a}>
+            <span className="text-term-dim">[award]</span> {a}
           </li>
         ))}
       </ul>
