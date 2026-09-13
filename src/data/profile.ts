@@ -64,13 +64,13 @@ export const experience: Experience[] = [
 
 export type Service = { port: string; service: string }
 
-// Verbatim from the approved comp; Task 8 replaces these with the tools' real default ports.
+// Tools shown on the default ports they listen on.
 export const services: Service[] = [
-  { port: '443/tcp', service: 'burp-suite' },
-  { port: '8080/tcp', service: 'owasp-zap' },
-  { port: '22/tcp', service: 'metasploit' },
-  { port: '9997/tcp', service: 'splunk' },
-  { port: '53/tcp', service: 'aws-guardduty' },
+  { port: '8080/tcp', service: 'burp-suite' },
+  { port: '4444/tcp', service: 'metasploit' },
+  { port: '8834/tcp', service: 'nessus' },
+  { port: '8000/tcp', service: 'splunk' },
+  { port: '443/tcp', service: 'aws-guardduty' },
 ]
 
 export type Project = {

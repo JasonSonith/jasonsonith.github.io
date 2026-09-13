@@ -17,13 +17,13 @@ function Prompt({ cmd, i }: { cmd: string; i: number }) {
 
 function SessionPane() {
   return (
-    <section aria-label="Session" className="pl-[1.72vw] pt-[2.1vh]">
+    <section aria-label="Session" className="pl-[1.72vw] pt-[2.1vh] max-md:px-4">
       <Prompt cmd="whoami" i={0} />
       <h1 className="sr-only">{identity.name}</h1>
       <pre aria-hidden="true" className="ascii boot mt-[3vh] max-md:hidden" style={step(1)}>
         {ASCII_NAME}
       </pre>
-      <pre aria-hidden="true" className="boot mt-3 hidden text-[2.1vw] leading-[1.22] max-md:block" style={step(1)}>
+      <pre aria-hidden="true" className="boot mt-3 hidden text-[3vw] leading-[1.22] max-md:block" style={step(1)}>
         {ASCII_NAME_STACKED}
       </pre>
       <div className="boot mt-[2.3vh]" style={step(2)}>
@@ -34,19 +34,19 @@ function SessionPane() {
       <div className="mt-[3.7vh]">
         <Prompt cmd="cat experience.log" i={3} />
       </div>
-      <table className="boot mt-[2.6vh] border-collapse whitespace-nowrap" style={step(4)}>
+      <table className="boot mt-[2.6vh] border-collapse whitespace-nowrap max-md:block max-md:whitespace-normal" style={step(4)}>
         <caption className="sr-only">Experience</caption>
-        <colgroup>
+        <colgroup className="max-md:hidden">
           <col className="w-[12.4vw]" />
           <col className="w-[20.37vw]" />
           <col />
         </colgroup>
-        <tbody>
+        <tbody className="max-md:grid max-md:gap-y-2">
           {experience.map((e) => (
-            <tr key={e.org}>
+            <tr key={e.org} className="max-md:grid max-md:grid-cols-[11ch_1fr] max-md:gap-x-2">
               <td className="p-0 tabular-nums">{e.periodShort}</td>
               <td className="p-0">{e.orgShort}</td>
-              <td className="p-0">{e.role}</td>
+              <td className="p-0 max-md:col-start-2 max-md:text-term-dim">{e.role}</td>
             </tr>
           ))}
         </tbody>
@@ -62,7 +62,7 @@ function NmapPane() {
   return (
     <section
       aria-labelledby="nmap-title"
-      className="border-l border-term pl-[1.64vw] pt-[1.9vh] max-md:border-l-0 max-md:border-t max-md:pl-[1.75vw] max-md:pt-4"
+      className="border-l border-term pl-[1.64vw] pt-[1.9vh] max-md:mt-6 max-md:border-l-0 max-md:border-t max-md:px-4 max-md:pt-4"
     >
       <p id="nmap-title" className="boot" style={step(1)}>
         nmap -sV jason
@@ -70,8 +70,8 @@ function NmapPane() {
       <table className="boot mt-[2.26vh] border-collapse" style={step(2)}>
         <caption className="sr-only">Tools shown as open services</caption>
         <colgroup>
-          <col className="w-[9.4vw]" />
-          <col className="w-[7.5vw]" />
+          <col className="w-[9.4vw] max-md:w-[10ch]" />
+          <col className="w-[7.5vw] max-md:w-[7ch]" />
           <col />
         </colgroup>
         <thead>

@@ -19,7 +19,7 @@ async function shot(name, viewport, { dpr = 1, fullPage = false } = {}) {
 
 if (which === 'hero' || which === 'all') await shot('hero-repro', { width: 1344, height: 760 }, { dpr: 2 })
 if (which === 'responsive' || which === 'all') {
-  await shot('desktop', { width: 1440, height: 900 }, { fullPage: true })
+  await shot('desktop', { width: 1440, height: 815 }, { fullPage: true })
   await shot('mobile', { width: 390, height: 844 }, { fullPage: true })
   await shot('user-1280', { width: 1280, height: 800 })
 }
