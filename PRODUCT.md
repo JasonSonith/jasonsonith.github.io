@@ -28,16 +28,16 @@ Visitors read on desktop from ATS/LinkedIn workflows and on phones from messages
 
 ## Capabilities and Constraints
 
-Content source of truth: resume PDF (2026), plus these true extras from the prior README: graduated summa cum laude; Multi-Agent AI Medical Device Validation Platform (FDA GUDID validation, bcrypt, RBAC, breached-password screening, OWASP ZAP 58 checks / 0 failures); toolbox extras C, WireGuard, Kali Linux.
+Content source of truth: resume PDF (2026), plus these true extras from the prior README: graduated summa cum laude; Multi-Agent AI Medical Device Validation Platform (Python pipeline that scrapes manufacturer websites and validates device data against the FDA GUDID database, bcrypt, RBAC, breached-password screening, OWASP ZAP 58 checks / 0 failures); toolbox extras C, WireGuard, Kali Linux.
 
 Facts:
 - Education: Georgia Tech M.S. Information Security (expected May 2028); University of South Alabama B.S. Computer Science, Cybersecurity concentration, GPA 3.9, 2022-2026.
 - Certifications: CompTIA Security+, CompTIA CySA+, AWS Cloud Practitioner. Award: School of Computing Student of the Year 2025-2026.
-- Experience: Product Security Assurance Intern, Honeywell (May-Aug 2026); Cybersecurity Intern, Mobile Health Infirmary (Feb 2025-May 2026); Research Assistant, Earthquake Prediction, USA (Jul 2025-May 2026; ObsPy/pandas, nonlinear phase space classifier, 16 graph features, 600,000 labeled waveforms).
+- Experience: Product Security Assurance Intern, Honeywell (May-Aug 2026; firmware, web app, and software testing with Nmap, Burp Suite, OWASP ZAP, Gobuster; findings documented and fixes validated); Cybersecurity Intern, Mobile Health Infirmary (Feb 2025-May 2026; network monitoring, hardening, access issues, NIST incident response playbook for HIPAA/HITECH, supported migration of on-premises systems to AWS); Research Assistant, Earthquake Prediction, USA (Jul 2025-May 2026; ObsPy/pandas, nonlinear phase space classifier, 16 graph features, 600,000 labeled waveforms).
 - Projects: Engineering Skills Assessment Platform (co-founder and developer, Jul 2026-present; browser-based CAD assessments, TypeScript, WebAssembly, Python/FastAPI; token-authenticated session APIs, autosave recovery, path traversal and stale-write fixes); Nextcloud Security Assessment Lab (Aug 2025); OSCP Penetration Testing Labs, HTB / CPTS (Jul 2026-present); Multi-Agent AI Medical Device Validation Platform.
 - Leadership and CTF: GreyHat member (Aug 2026-present, TNC26 CTF web challenges); SGA Senator (started School of Computing hackathon, secured $6,000); President, Video Game Development Club (revived it).
 - Skills: Burp Suite, Nmap, OWASP ZAP, Metasploit, Splunk, Nessus, pfSense, Gobuster, WireGuard, Kali Linux; AWS (IAM, EC2, S3, GuardDuty, CloudTrail, Config), Linux, Docker; Python, PowerShell, Bash, Java, JavaScript, C.
-- Public repos of note: Team-7-nextcloud-security-lab, pfsense-ids-ips-lab, python-log-analyzer, Earthquake-prediction, python-scripts, academic_projects, OSCP.
+- Public repos of note (descriptions from GitHub): Team-7-nextcloud-security-lab, pfsense-ids-ips-lab (small enterprise lab with Kali Linux as the attacker and Ubuntu hosts), python-log-analyzer (analyzes JSON logs and flags suspicious events), Earthquake-prediction, python-scripts, academic_projects, OSCP.
 
 Contact shown publicly: GitHub, LinkedIn (linkedin.com/in/jason-sonith), email. Phone number is never published.
 

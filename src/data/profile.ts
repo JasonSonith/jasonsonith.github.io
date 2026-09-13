@@ -26,7 +26,7 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    periodShort: '2026.05-08',
+    periodShort: '2026.05-26.08',
     period: 'May-Aug 2026',
     org: 'Honeywell',
     orgShort: 'Honeywell',
@@ -38,7 +38,7 @@ export const experience: Experience[] = [
     ],
   },
   {
-    periodShort: '2025.02-26',
+    periodShort: '2025.02-26.05',
     period: 'Feb 2025-May 2026',
     org: 'Mobile Health Infirmary',
     orgShort: 'Mobile Health Infirmary',
@@ -50,7 +50,7 @@ export const experience: Experience[] = [
     ],
   },
   {
-    periodShort: '2025.07-26',
+    periodShort: '2025.07-26.05',
     period: 'Jul 2025-May 2026',
     org: 'University of South Alabama',
     orgShort: 'Univ. of South Alabama',
@@ -70,7 +70,7 @@ export const services: Service[] = [
   { port: '4444/tcp', service: 'metasploit' },
   { port: '8834/tcp', service: 'nessus' },
   { port: '8000/tcp', service: 'splunk' },
-  { port: '443/tcp', service: 'aws-guardduty' },
+  { port: '51820/udp', service: 'wireguard' },
 ]
 
 export type Project = {
