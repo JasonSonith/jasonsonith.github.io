@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-13T23:38:13Z",
+  "title": "Design System: Jason Sonith — Terminal Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "ground": { "role": "background", "displayName": "Ground", "canonical": "#080808", "tonalRamp": ["#080808", "#083211", "#089d46", "#08f679"] },
+      "phosphor": { "role": "primary", "displayName": "Phosphor", "canonical": "#08f679", "tonalRamp": ["#080808", "#083211", "#089d46", "#08f679"] },
+      "phosphor-dim": { "role": "secondary", "displayName": "Phosphor Dim", "canonical": "#089d46", "tonalRamp": ["#080808", "#083211", "#089d46", "#08f679"] },
+      "phosphor-faint": { "role": "neutral", "displayName": "Phosphor Faint", "canonical": "#083211", "tonalRamp": ["#080808", "#083211", "#089d46", "#08f679"] },
+      "popover": { "role": "surface", "displayName": "Popover Ground", "canonical": "#0b100c", "tonalRamp": ["#080808", "#0b100c", "#083211", "#089d46"] },
+      "rain-highlight": { "role": "accent", "displayName": "Rain Highlight", "canonical": "#c8ffe0", "tonalRamp": ["#08f679", "#5ffcab", "#c8ffe0"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "ASCII Display", "purpose": "The figlet ANSI-Shadow block-letter name in the hero, scaled to viewport width so its 103-column art always fits the pane." },
+      "body": { "displayName": "Body / Terminal Text", "purpose": "Every prompt, table, prose block, and section body across the site." },
+      "control": { "displayName": "Control", "purpose": "Buttons and command-palette items; the only medium-weight (500) text in the system." }
+    },
+    "motion": [
+      { "name": "boot-in", "value": "clip-path: inset(0 100% 0 0) -> inset(0 0 0 0); 0.32s steps(20, end) both, staggered by --i * 140ms", "purpose": "One-shot line-by-line terminal typing reveal on first load. Disabled once html[data-boot=\"done\"] (any keydown/pointerdown) or under prefers-reduced-motion." },
+      { "name": "cursor-blink", "value": "opacity 1 -> 0 at 50%; 1s steps(1) infinite", "purpose": "Blinking block cursor at the end of the hero prompt. Disabled under prefers-reduced-motion." },
+      { "name": "rain-cadence", "value": "requestAnimationFrame loop gated to ~90ms per advance (~11fps); head glyph highlighted, trailing 4 rows at full alpha, rest at 0.82 alpha", "purpose": "Matrix-rain canvas column (2 columns, 19px row height). Paused via IntersectionObserver (off-screen) and document.visibilitychange (hidden tab); never started under prefers-reduced-motion." },
+      { "name": "readme-typed", "value": "SMIL <animate> on a clipPath rect width, calcMode discrete, ~0.025s per character", "purpose": "Static-file equivalent of boot-in for the GitHub README's SVG banner/panels, since GitHub renders no JS/CSS beyond inline SVG+SMIL." },
+      { "name": "readme-rain", "value": "SMIL animateTransform translate loop, 5s and 3.6s durations on two offset columns", "purpose": "README banner's falling-glyph column, mirroring the site's MatrixRain in a renderer with no canvas or JS." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Default call-to-action button; starts fully inverse (phosphor fill, ground text).",
+      "html": "<button class=\"ds-btn-primary\">[ send email ]</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;height:2rem;padding:0 .625rem;background:#08f679;color:#080808;border:1px solid #08f679;border-radius:0;font-family:'Google Sans Code',ui-monospace,monospace;font-size:.875rem;font-weight:500;white-space:nowrap;cursor:pointer;transition:background-color .15s,color .15s,transform .15s;}.ds-btn-primary:hover{background:#080808;color:#08f679;}.ds-btn-primary:focus-visible{outline:2px solid #08f679;outline-offset:2px;}.ds-btn-primary:active{transform:translateY(1px);}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary button; transparent fill until hovered, then inverts like Primary's resting state.",
+      "html": "<button class=\"ds-btn-outline\">[ resume.pdf ]</button>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;height:2rem;padding:0 .625rem;background:transparent;color:#08f679;border:1px solid #08f679;border-radius:0;font-family:'Google Sans Code',ui-monospace,monospace;font-size:.875rem;font-weight:500;white-space:nowrap;cursor:pointer;transition:background-color .15s,color .15s,transform .15s;}.ds-btn-outline:hover{background:#08f679;color:#080808;}.ds-btn-outline:focus-visible{outline:2px solid #08f679;outline-offset:2px;}.ds-btn-outline:active{transform:translateY(1px);}"
+    },
+    {
+      "name": "Pane",
+      "kind": "card",
+      "refersTo": "section-header",
+      "description": "A bordered pane with a command-line title bar; the recurring container for every below-the-fold section.",
+      "html": "<section class=\"ds-pane\"><h2 class=\"ds-pane-header\"><span><span class=\"ds-dim\">jason@sonith:~$ </span>ls -la ~/projects</span><span class=\"ds-dim\">[projects]</span></h2><div class=\"ds-pane-body\">total 7</div></section>",
+      "css": ".ds-pane{border:1px solid #089d46;font-family:'Google Sans Code',ui-monospace,monospace;color:#08f679;}.ds-pane-header{display:flex;justify-content:space-between;gap:2ch;border-bottom:1px solid #089d46;background:#083211;padding:0 1ch;font-weight:400;}.ds-pane-header .ds-dim{color:#089d46;}.ds-pane-body{padding:1lh 2ch;}"
+    },
+    {
+      "name": "Status Bar",
+      "kind": "nav",
+      "refersTo": "statusbar",
+      "description": "Fixed, pinned-bottom, fully inverse-video primary navigation holding the four hotkey actions. Hover/focus un-inverts a single link.",
+      "html": "<nav class=\"ds-statusbar\"><a href=\"#contact\" class=\"ds-statusbar-link\">[1] contact</a><a href=\"#\" class=\"ds-statusbar-link\">[2] resume.pdf</a><a href=\"#\" class=\"ds-statusbar-link\">[3] github</a><a href=\"#\" class=\"ds-statusbar-link\">[4] linkedin</a></nav>",
+      "css": ".ds-statusbar{position:fixed;left:.6vw;right:.6vw;bottom:2.2vh;height:clamp(36px,4.7vh,48px);display:grid;grid-template-columns:28.6% 27.4% 25.6% 1fr;align-items:center;background:#08f679;color:#080808;padding:0 1.1vw;font-family:'Google Sans Code',ui-monospace,monospace;}.ds-statusbar-link{justify-self:start;color:inherit;text-decoration:none;}.ds-statusbar-link:hover,.ds-statusbar-link:focus-visible{background:#080808;color:#08f679;}"
+    },
+    {
+      "name": "Tab Strip",
+      "kind": "nav",
+      "description": "Top chrome bar: session handle + ctrl+k hint, centered certs, right-aligned live clock.",
+      "html": "<div class=\"ds-tabbar\"><span>[0]&nbsp;&nbsp;jason@sonith: ~ <kbd class=\"ds-dim\">ctrl+k</kbd></span><span>SEC+ | CySA+ | AWS CP</span><time class=\"ds-tabular\">2026-09-13 19:33:01</time></div>",
+      "css": ".ds-tabbar{margin:1.1vh .6vw 0;height:max(32px,4.6vh);display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;border:1px solid #08f679;padding:0 1.1vw;color:#08f679;font-family:'Google Sans Code',ui-monospace,monospace;}.ds-tabbar span:nth-child(2){justify-self:center;}.ds-tabbar time{justify-self:end;font-variant-numeric:tabular-nums;}.ds-dim{color:#089d46;}"
+    },
+    {
+      "name": "Accordion Row",
+      "kind": "custom",
+      "description": "ls -la-flavored disclosure row (Projects section): bracket-toggle icon, full inverse video when expanded, faint hover fill when collapsed.",
+      "html": "<div class=\"ds-accordion-item\"><button class=\"ds-accordion-trigger\" aria-expanded=\"false\"><span>drwxr-xr-x&nbsp;&nbsp;2026.07-now&nbsp;&nbsp;Engineering Skills Assessment Platform/</span><span class=\"ds-icon\"></span></button></div>",
+      "css": ".ds-accordion-item{border-bottom:1px solid #083211;}.ds-accordion-trigger{display:flex;width:100%;justify-content:space-between;align-items:flex-start;gap:2ch;padding:.4lh 1ch;background:transparent;color:#08f679;border:none;font-family:'Google Sans Code',ui-monospace,monospace;font-size:1rem;text-align:left;cursor:pointer;}.ds-accordion-trigger:hover{background:#083211;}.ds-accordion-trigger[aria-expanded='true']{background:#08f679;color:#080808;}.ds-accordion-trigger .ds-icon::before{content:'[+]';}.ds-accordion-trigger[aria-expanded='true'] .ds-icon::before{content:'[-]';}"
+    },
+    {
+      "name": "Command Palette Input",
+      "kind": "input",
+      "description": "Terminal-styled search field inside the Ctrl+K / '/' command dialog.",
+      "html": "<div class=\"ds-cmdk-input-wrap\"><input class=\"ds-cmdk-input\" placeholder=\"type a command, or help\"/></div>",
+      "css": ".ds-cmdk-input-wrap{display:flex;align-items:center;gap:.5rem;height:2rem;border:1px solid rgba(8,157,70,.3);background:rgba(8,157,70,.08);padding:0 .5rem;}.ds-cmdk-input{flex:1;background:transparent;border:none;outline:none;color:#08f679;font-family:'Google Sans Code',ui-monospace,monospace;font-size:.875rem;}.ds-cmdk-input::placeholder{color:#089d46;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Live tmux Session",
+    "overview": "The site is not a page about a terminal; it is a session already open. A visitor lands mid-`whoami`, with a live clock ticking in the tab strip, a cursor blinking at the prompt, and a real `nmap` table listing the tools Jason actually uses as if they were open ports. The world is phosphor-on-black: one green (with three tonal steps of the same hue) on near-black, one monospace face for every character on the page — prose, tables, buttons, and headings alike — and zero corner radius anywhere. There is no card grid, no drop shadow, no gradient, no icon-driven affordance system; state and hierarchy are carried entirely by inverse video (foreground and background swap) and by dimming to a lower step of the same green.\n\nThe build carries this discipline into both surfaces it ships: the React site (src/) and the GitHub profile README, which is a set of self-contained animated SVGs (scripts/readme/svg.ts) reproducing the same palette, type, and terminal-typing motion inside a renderer that allows no JS and no external CSS.",
+    "keyCharacteristics": [
+      "One hue, four steps: ground, faint, dim, full phosphor — nothing else.",
+      "One font family everywhere, including numerals and headings.",
+      "Zero border-radius, no shadows, no gradients, no glow.",
+      "Hierarchy and state read through inverse video and dimming, not size or icons.",
+      "Motion is diegetic: a boot-in typing sequence, a blinking cursor, a falling-glyph column — all skippable and all disabled under reduced motion."
+    ],
+    "rules": [
+      { "name": "The One Hue Rule", "body": "Every color in the system is the same green at a different lightness step (#083211 -> #089d46 -> #08f679), plus the near-black it sits on. Do not introduce a second hue for status, warning, or accent purposes.", "section": "colors" },
+      { "name": "The Inverse-Video Rule", "body": "\"Selected\" or \"active\" is never a new color — it is foreground and background swapping. The status bar, the expanded accordion row, and a hovered/focused button all go from phosphor-on-ground to ground-on-phosphor. No other selection treatment (border glow, background tint, checkmark color change) exists in the built system.", "section": "colors" },
+      { "name": "The Size-Is-Not-Hierarchy Rule", "body": "Do not add a size scale to signal importance. This system has one body size and one display size; everything else is color (dim vs. full phosphor) or inverse video.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "No box-shadow, no gradient, no glow exists anywhere in the shipped CSS or components. A border and, where selected, an inverse-video fill are the only depth and state cues this system has.", "section": "elevation" },
+      { "name": "The Square-Corner Rule", "body": "--radius: 0rem, and every derived step (--radius-sm through --radius-4xl) is pinned to 0rem in src/index.css. Every bordered surface renders with hard, square corners. One unrestyled exception exists (the command palette's DialogContent still carries stock shadcn's rounded-xl) — a defect, not a sanctioned second shape language.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do keep every surface to one hue at one of four lightness steps (#080808 / #083211 / #089d46 / #08f679).",
+      "Do signal \"selected\" or \"active\" with a full foreground/background inverse-video swap, not a new color or a glow.",
+      "Do size spacing and type in vw/vh/ch/lh relative to the root clamp, not fixed px steps.",
+      "Do keep every corner square (0rem radius) on every bordered surface.",
+      "Do render disclosure and navigation affordances as bracketed text ([+]/[-], [1]-[4]) rather than icons.",
+      "Do let content render fully in the DOM before any boot/typing animation runs, and honor prefers-reduced-motion by disabling .boot/.cursor animation and never starting the rain canvas's animation loop."
+    ],
+    "donts": [
+      "Don't add gradients or glow — the only gradient in the codebase is the scanline overlay texture, not a decorative device, and it must stay that way.",
+      "Don't add drop shadows, elevation, or tonal surface layering; depth is border-only.",
+      "Don't round any corner; the one place it currently happens (the command palette's DialogContent, still carrying stock shadcn's rounded-xl) is a defect to fix, not a pattern to extend.",
+      "Don't introduce a second accent hue for status/warning/success — reuse the existing phosphor/dim/faint steps.",
+      "Don't reach for icon fonts or glyph icon sets; the one that has crept in (SearchIcon in the command palette input) should not be treated as license to add more."
+    ]
+  }
+}
