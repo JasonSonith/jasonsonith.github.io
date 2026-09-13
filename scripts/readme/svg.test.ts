@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { experience, projects, services } from '../../src/data/profile'
-import { PHONE } from '../../tests/phone'
-import { BUTTONS, bannerSvg, buttonSvg, escapeXml, experienceSvg, nmapSvg, readmeMarkdown } from './svg'
+import { awards, certs, experience, projects, services } from '../../src/data/profile'
+import { findPhones } from '../../tests/phone'
+import { BUTTONS, bannerSvg, buttonSvg, certsSvg, escapeXml, experienceSvg, readmeMarkdown } from './svg'
 
 const wellFormed = (svg: string) => {
   expect(svg.startsWith('<svg')).toBe(true)
@@ -16,12 +16,14 @@ describe('escapeXml', () => {
 })
 
 describe('svg panels', () => {
-  it('banner shows the prompt, ascii name, and roles, and stays visible without animation', () => {
+  it('banner shows the prompt, ascii name, roles, and every nmap service, and stays visible without animation', () => {
     const svg = bannerSvg('')
     wellFormed(svg)
     expect(svg).toContain('whoami')
     expect(svg).toContain('█')
     expect(svg).toContain('Penetration Tester / Product Security')
+    expect(svg).toContain('nmap -sV jason')
+    for (const s of services) expect(svg).toContain(s.service)
     expect(svg).not.toMatch(/<clipPath[^>]*><rect[^>]*width="0"/)
   })
 
@@ -31,10 +33,10 @@ describe('svg panels', () => {
     for (const e of experience) expect(svg).toContain(escapeXml(e.role))
   })
 
-  it('nmap panel lists every service', () => {
-    const svg = nmapSvg('')
+  it('certs panel lists every cert and award', () => {
+    const svg = certsSvg('')
     wellFormed(svg)
-    for (const s of services) expect(svg).toContain(s.service)
+    for (const c of [...certs, ...awards]) expect(svg).toContain(escapeXml(c))
   })
 
   it('buttons render their label', () => {
@@ -55,12 +57,13 @@ describe('readmeMarkdown', () => {
   })
 
   it('references every asset with alt text', () => {
-    for (const f of ['banner.svg', 'experience.svg', 'nmap.svg', ...BUTTONS.map((b) => b.file)]) {
+    for (const f of ['banner.svg', 'experience.svg', 'certs.svg', ...BUTTONS.map((b) => b.file)]) {
       expect(md).toMatch(new RegExp(`src="assets/${f.replace('.', '\\.')}" alt="[^"]+"`))
     }
+    expect(md).not.toContain('nmap.svg')
   })
 
   it('contains no phone number', () => {
-    expect(PHONE.test(md)).toBe(false)
+    expect(findPhones(md)).toEqual([])
   })
 })
