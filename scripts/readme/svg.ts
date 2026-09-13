@@ -54,11 +54,10 @@ function rain(x: number, y: number, height: number) {
   return `<clipPath id="rain"><rect x="${x - 4}" y="${y}" width="36" height="${height}"/></clipPath><g clip-path="url(#rain)">${column(0, 0, 5)}${column(16, 7, 3.6)}</g>`
 }
 
-// ASCII_NAME is figlet "ANSI Shadow": 6 rows x 94 cols of block/box-drawing glyphs.
-// NAME_FS/NAME_DY are tuned (not the plan's 11px/15.5px, sized for a 5-row "ANSI Regular" name)
-// so the box-drawing strokes connect row-to-row with a tight line box.
-const NAME_FS = 12
-const NAME_DY = 9
+// ASCII_NAME is figlet "ANSI Shadow" (6 rows, ~103 cols); size and row step keep box-drawing strokes connected
+// and the name clear of the nmap divider.
+const NAME_FS = 11
+const NAME_DY = 8.25
 const NAME_ROWS = ASCII_NAME.split('\n').length
 const NAME_TOP = 126
 const NAME_BOTTOM = NAME_TOP + (NAME_ROWS - 1) * NAME_DY + NAME_FS * 0.3
@@ -120,8 +119,8 @@ ${lines.map((l, i) => `<text x="20" y="${76 + i * LH}"${l.dim ? ' class="dim"' :
 
 export function experienceSvg(fontCss: string) {
   const lines = experience.flatMap((e) => [
-    { text: `${pad(e.periodShort, 12)}${e.orgShort}` },
-    { text: `${' '.repeat(12)}${e.role}`, dim: true },
+    { text: `${pad(e.periodShort, 15)}${e.orgShort}` },
+    { text: `${' '.repeat(15)}${e.role}`, dim: true },
   ])
   const title = `experience.log: ${experience.map((e) => `${e.role} at ${e.org} (${e.period})`).join('; ')}`
   return panel(title, 'cat experience.log', lines, fontCss)

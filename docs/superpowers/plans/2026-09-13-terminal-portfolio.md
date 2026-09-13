@@ -214,8 +214,8 @@ function* files(dir: string): Generator<string> {
 
 describe('phone guard', () => {
   it('matches phone-shaped strings only', () => {
-    expect(PHONE.test('call (555) 010-4477')).toBe(true)
-    expect(PHONE.test('555.010.4477')).toBe(true)
+    expect(PHONE.test('call (555) 555-0142')).toBe(true)
+    expect(PHONE.test('555.555.0142')).toBe(true)
     expect(PHONE.test('600,000 labeled waveforms')).toBe(false)
     expect(PHONE.test('2026.05-2026.08')).toBe(false)
   })
